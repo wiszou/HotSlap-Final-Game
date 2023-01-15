@@ -17,6 +17,8 @@ public class GameManager_2P : MonoBehaviour
     public GameObject enemy1; // The enemy being attack
     public Image player1TurnIndicator;
     public Image player2TurnIndicator;
+    public Animator p1HPAnim;
+    public Animator p2HPAnim;
     
     public float dodgeDuration = 0.1f; // Dodge lasts for 0.5 seconds
     public float attackDuration = 0.3f; // The attack animation lasts for 0.5 seconds
@@ -40,10 +42,27 @@ public class GameManager_2P : MonoBehaviour
     {
         player1TurnIndicator.gameObject.SetActive(false);
         player2TurnIndicator.gameObject.SetActive(false);
-
+        if (fightingHandler_2P.playerOneHP <= (NameHandler.playerHP/2))
+            {
+                animatorPlayerAttk.SetBool("Attack", false);
+                p1HPAnim.SetBool("P1Lowhealth", true);
+            }
+            if (fightingHandler_2P.playerTwoHP <= (NameHandler.playerHP/2))
+            {
+                animatorEnemyAttk.SetBool("Attack", false);
+                p2HPAnim.SetBool("P2Lowhealth", true);
+            }
     }
     void Update()
     {
+        if (fightingHandler_2P.playerOneHP <= (NameHandler.playerHP/2))
+        {
+            p1HPAnim.SetBool("P1Lowhealth", true);
+        }
+        if (fightingHandler_2P.playerTwoHP <= (NameHandler.playerHP/2))
+        {
+            p2HPAnim.SetBool("P2Lowhealth", true);
+        }
         // Check if it's player 1's turn
         if (isPlayer1Turn)
         {   
@@ -57,6 +76,12 @@ public class GameManager_2P : MonoBehaviour
             // Check if player 1 has made their move
             if (Input.GetKeyDown(KeyCode.A))
             {
+                animatorPlayerAttk.SetBool("Attack", true);
+
+                if (fightingHandler_2P.playerOneHP <= (NameHandler.playerHP/2))
+                {
+                    p1HPAnim.SetBool("P1Attack50HP", true);
+                }
                 isPlayer1Turn = false;
                 StartCoroutine(WaitForAttackA());
             }
@@ -73,6 +98,11 @@ public class GameManager_2P : MonoBehaviour
             // Check if player 2 has made their move
             if (Input.GetKeyDown(KeyCode.J))
             {
+                animatorEnemyAttk.SetBool("Attack", true);
+                if (fightingHandler_2P.playerTwoHP <= (NameHandler.playerHP/2))
+                {
+                    p2HPAnim.SetBool("P2Attack50HP", true);
+                }
                 isPlayer1Turn = true;
                 StartCoroutine(WaitForAttackJ());
             }
@@ -80,11 +110,21 @@ public class GameManager_2P : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
+            animatorPlayerAttk.SetBool("Ulti", true);
+                if (fightingHandler_2P.playerOneHP <= (NameHandler.playerHP/2))
+                {
+                    p1HPAnim.SetBool("P1Ulti50HP", true);
+                }
             isPlayer1Turn = false;
             StartCoroutine(WaitForUltiD());
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
+            animatorEnemyAttk.SetBool("Ulti", true);
+                if (fightingHandler_2P.playerTwoHP <= (NameHandler.playerHP/2))
+                {
+                    p2HPAnim.SetBool("P2Ulti50HP", true);
+                }
             isPlayer1Turn = false;
             StartCoroutine(WaitForUltiL());
         }
@@ -97,6 +137,10 @@ public class GameManager_2P : MonoBehaviour
                 enemyDodged = true;
                 // Start the dodge animation and wait for it to finish
                 animatorEnemyDodge.SetTrigger("Dodge");
+                if (fightingHandler_2P.playerTwoHP <= (NameHandler.playerHP/2))
+                {
+                    p2HPAnim.SetBool("P2Dodge50HP", true);
+                }
                 StartCoroutine(WaitForDodgeK());
             }
         if (Input.GetKey(KeyCode.S) && !dodgeButtonDisabled)
@@ -107,6 +151,10 @@ public class GameManager_2P : MonoBehaviour
                 enemyDodged = true;
                 // Start the dodge animation and wait for it to finish
             animatorPlayerDodge.SetTrigger("Dodge");
+                if (fightingHandler_2P.playerOneHP <= (NameHandler.playerHP/2))
+                {
+                    p1HPAnim.SetBool("P1Dodge50HP", true);
+                }
             StartCoroutine(WaitForDodgeS());
         }
 

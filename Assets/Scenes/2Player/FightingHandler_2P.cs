@@ -51,9 +51,6 @@ public class FightingHandler_2P : MonoBehaviour
         StartCoroutine(healthChecker());
     }
 
-
-
-
     IEnumerator healthChecker()
     {   
 
@@ -63,8 +60,6 @@ public class FightingHandler_2P : MonoBehaviour
             NameHandler.winner = 1;
             yield return new WaitForSeconds(.1f);
             SceneManager.LoadScene("OverallWinner");
-           
-
         }
 
         if (playerTwoHP <= 0)
