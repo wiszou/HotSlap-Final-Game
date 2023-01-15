@@ -46,8 +46,8 @@ public class Fighting3Handler_6P : MonoBehaviour
         // Update the health bar to reflect the current health of the player
         healthBarSliderP1.value = playerOneHP / (float)NameHandler.playerHP;
         healthBarSliderP2.value = playerTwoHP / (float)NameHandler.playerHP;
-        UltimateEnergySliderP1.value = gameManager.playerOneEnergy / 40f;
-        UltimateEnergySliderP2.value = gameManager.playerTwoEnergy / 40f;
+        UltimateEnergySliderP1.value = gameManager.playerOneEnergy / 50f;
+        UltimateEnergySliderP2.value = gameManager.playerTwoEnergy / 50f;
 
         StartCoroutine(healthChecker());
     }

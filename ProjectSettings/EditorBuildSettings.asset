@@ -175,23 +175,23 @@ EditorBuildSettings:
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
-    guid: 515a2c3c65ea29a4d9ff38eebad868c6
-  - enabled: 0
-    path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/GAME SCENE.unity
     guid: f9fc477ede577d943a3506be2bf09f00
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TrialGameScene2P.unity
     guid: 28f40cf585df5cf49809e3c37ce227a2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing.unity
     guid: db20c6d758ac637449bc351f4b6f3a79
   - enabled: 0
